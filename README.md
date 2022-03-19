@@ -4,7 +4,7 @@
 
 A collection of Shell scripts to install gaming specific software.
 Only the essentials. Bloat is not allowed.
-The only application that will be installed is lutris.
+The only application that will be installed is Lutris.
 
 ### How?
 
