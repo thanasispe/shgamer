@@ -10,4 +10,4 @@ download_tar() {
 
 mkdir -p "$path"
 download_tar "$url_sauerbraten" 'sauerbraten.tar.bz2'
-download_tar "$url_warsow" 'warsow-2.1.2.tar.gz'
+download_tar "$url_warsow" 'warsow.tar.gz'
