@@ -5,9 +5,20 @@ url_sauerbraten='https://sourceforge.net/projects/sauerbraten/files/sauerbraten/
 url_warsow='https://warsow.net/warsow-2.1.2.tar.gz'
 
 download_tar() {
-	curl -L "$1" > "$2"; tar -xf "$2" -C "$path"; rm "$2"
+	[ ! -e "$path/$2" ] && curl -L "$1" > "$2" && tar -xvf "$2" -C "$path" && rm "$2"
+}
+
+show_prompt() {
+	read -p "Do you want to install $1? [Y/n] " REPLY
+	case "$REPLY" in
+		[Yy]* ) echo "y";;
+		[Nn]* ) echo;;
+		* ) echo "y";;
+	esac
 }
 
 mkdir -p "$path"
-download_tar "$url_sauerbraten" 'sauerbraten.tar.bz2'
-download_tar "$url_warsow" 'warsow.tar.gz'
+can_warsow="$(show_prompt Warsow)"
+can_sauerbraten="$(show_prompt Sauerbraten)"
+[ -n "$can_warsow" ] && download_tar "$url_warsow" 'warsow'
+[ -n "$can_sauerbraten" ] && download_tar "$url_sauerbraten" 'sauerbraten'
