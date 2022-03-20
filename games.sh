@@ -5,7 +5,10 @@ url_sauerbraten='https://sourceforge.net/projects/sauerbraten/files/sauerbraten/
 url_warsow='https://warsow.net/warsow-2.1.2.tar.gz'
 
 download_tar() {
-	[ ! -e "$path/$2" ] && curl -L "$1" > "$2" && tar -xvf "$2" -C "$path" && rm "$2"
+	[ ! -e "$path/$2" ] \
+	&& echo "Downloading $2." \
+	&& curl -L "$1" | tar -xz -C "$path" \
+	&& mv "$path/$2"* "$path/$2"
 }
 
 show_prompt() {
